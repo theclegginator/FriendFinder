@@ -18,15 +18,38 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
     <title>Friend Finder - Survey</title>
+    <link rel="icon" type="image/png" sizes="96x96" href="app/public/favicon.ico">
 </head>
 
-<body>
-    <div class="container">
-        TEST
+<body style="background-image: url('../app/public/home-background.jpeg')">
+    <!-- JUMBOTRON -->
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Friend Finder</h1>
+            <p class="lead">Welcome to Friend Finder, where you can find the friend that's perfect for you!</p>
+        </div>
     </div>
+    
+    <div class="container">
 
-    <script src="app/public/htmlRoutes.js"></script>
+        <!-- BUTTON FOR SURVEY LINK -->
+        <div class="col"></div>
+        <div class="col">
+            <a class="btn btn-primary" href="survey" role="button" style="width: 100%; height: 40px;">Take the Survey</a>
+        </div>
+        <br>
+        <br>
+
+        <!-- FOOTER SECTION -->
+        <footer class="footer">
+            <div class="container">
+                <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/theclegginator/FriendFinder">GitHub Repo</a></p>
+            </div>
+        </footer>
+
+    </div>
 </body>
 
 </html>

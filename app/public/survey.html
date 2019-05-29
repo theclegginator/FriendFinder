@@ -18,27 +18,34 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
     <title>Friend Finder - Survey</title>
 </head>
 
 <body>
+    <!-- JUMBOTRON -->
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Friend Finder Survey</h1>
+            <p class="lead">Find the friend that's perfect for you!</p>
+        </div>
+    </div>
+    
     <div class="container">
 
-        <!-- JUMBOTRON -->
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-4">Friend Finder Survey</h1>
-                <p class="lead">Find the friend that's perfect for you!</p>
-            </div>
-        </div>
         <!-- TEXT INPUT AREAS -->
         <h2>About You</h2>
+        <h5>Your Name</h5>
+        <input id="name" class="form-control" type="text" placeholder="John Doe">
+        <br>
+        <h5>URL for a Photo of You</h5>
+        <input id="photo" class="form-control" type="text" placeholder="https://photo.com/YourPicture.png">
         <!-- DROPDOWN ARRAY  -->
 
         <!-- Question 1 -->
         <p>
             <h5>1. Quality Time is important to me.</h5>
-            <select>
+            <select id="q1">
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -49,7 +56,7 @@
         <!-- Question 2 -->
         <p>
             <h5>2. I'm a "words person".</h5>
-            <select>
+            <select id="q2">
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -60,7 +67,7 @@
         <!-- Question 3 -->
         <p>
             <h5>3. I love animals.</h5>
-            <select>
+            <select id="q3">
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -71,7 +78,7 @@
         <!-- Question 4 -->
         <p>
             <h5>4. Long walks on the beach are corny!</h5>
-            <select>
+            <select id="q4">
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -82,7 +89,7 @@
         <!-- Question 5 -->
         <p>
             <h5>5. I'm a non-confrontational person.</h5>
-            <select>
+            <select id="q5">
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -93,7 +100,7 @@
         <!-- Question 6 -->
         <p>
             <h5>6. I need lots of alone time.</h5>
-            <select>
+            <select id="q6">
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -104,7 +111,7 @@
         <!-- Question 7 -->
         <p>
             <h5>7. Looks are an important factor in the relationship.</h5>
-            <select>
+            <select id="q7">
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -115,7 +122,7 @@
         <!-- Question 8 -->
         <p>
             <h5>8. I'm easy to get along with.</h5>
-            <select>
+            <select id="q8">
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -126,7 +133,7 @@
         <!-- Question 9 -->
         <p>
             <h5>9. My career is my main prioritiy.</h5>
-            <select>
+            <select id="q9">
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -137,7 +144,7 @@
         <!-- Question 10 -->
         <p>
             <h5>10. I am often late for things.</h5>
-            <select>
+            <select id="q10">
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -145,10 +152,53 @@
                 <option value="5">5 (Strongly Agree)</option>
             </select>
         </p>
+        <br>
+
+        <!-- BUTTON FOR API SUBMISSION -->
+        <div class="col"></div>
+        <div class="col">
+            <button id="submit" type="button" class="btn btn-primary" style="width: 100%; height: 50px;">Find My Match!</button>
+        </div>
+        <br>
+        <br>
+
+        <!-- FOOTER SECTION -->
+        <footer class="footer">
+            <div class="container">
+                <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/theclegginator/FriendFinder">GitHub Repo</a></p>
+            </div>
+        </footer>
+
+        <script type="text/javascript">
+            // Question: What does this code do?
+            $("#submit").on("click", function(event) {
+                event.preventDefault();
+                let userAnswers = []; // initialize a matrix for the user answers
+                    for (let i = 1; i < 11; i++) {
+                        let answer = $(`#q${i}`).val(); // get the dropdown answer
+                        answer = parseInt(answer.slice(0, 1)); // slice the string to just the number at the beginning and convert to integer
+                        userAnswers.push(answer); // push each answer to an array
+                    }
+
+                let name = $("#name").val().trim(); // grab the user's name from the text input area.
+                let photoURL = $("#photo").val().trim(); // grab the user's photo URL from the input area.
+                
+                // build out a new friend object using the values we pull from the table.
+                let newFriend = {
+                    "name": name,
+                    "photo": photoURL,
+                    "scores": userAnswers
+                }
+                console.log(newFriend)
+                // post to API route.
+                $.post("/api/friends", newFriend)
+                    .then(function(data) {
+                    console.log("Adding new Friend to API...");
+                    });
+            });
+          </script>
 
     </div>
-
-    <script src="app/public/htmlRoutes.js"></script>
 </body>
 
 </html>
