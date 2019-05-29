@@ -1,8 +1,11 @@
 // dependency for path npm module.
 const path = require("path");
+const express = require("express");
 
 // List of HTML routes below.
 module.exports = function(app) {
+    // allows us to link to files such as background images through routing
+    app.use(express.static("public"));
 
     // If the user only types a "/", we send them to the home page. 
     app.get("/", function(req, res) {

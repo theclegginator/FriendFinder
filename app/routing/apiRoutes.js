@@ -10,10 +10,10 @@ module.exports = function (app) {
   // POST route for adding a friend through the API upon form submit.
   app.post("/api/friends", function (req, res) {
     let newFriend = req.body;
-    checkCompatibility(newFriend); // Send the new friend we just posted to the function.
+    let match = checkCompatibility(newFriend); // Send the new friend we just posted to the function.
     // Push the new friend into the friends array variable in friends.js
     friends.push(newFriend);
-    res.json(newFriend);
+    res.json(match);
   });
 }
 
@@ -38,5 +38,5 @@ function checkCompatibility(newFriend) {
     }
   }
   let bestMatch = friends[index];
-  console.log(bestMatch)
+  return bestMatch;
 }

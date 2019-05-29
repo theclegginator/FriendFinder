@@ -1,6 +1,6 @@
 let friends =  [{
-    "name":"Test guy",
-    "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    "name":"Test Guy 1",
+    "photo":"https://www.seekpng.com/png/small/49-492017_8-bit-mario-pixel-art-download-super-mario.png",
     "scores":[
         5,
         1,
@@ -11,6 +11,22 @@ let friends =  [{
         2,
         5,
         4,
+        1
+      ]
+  },
+  {
+    "name":"Test Guy 2",
+    "photo":"https://holidaywonders.net/wp-content/uploads/2019/05/awesome-luigi-mario-pixel-super-mario-bros-free-transparent-png-download-inspiration.png",
+    "scores":[
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         1
       ]
   }]

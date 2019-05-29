@@ -20,10 +20,16 @@
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery.js"></script>
     <title>Friend Finder - Survey</title>
-    <link rel="icon" type="image/png" sizes="96x96" href="app/public/favicon.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="../../app/public/favicon.ico">
 </head>
 
-<body style="background-image: url('../app/public/home-background.jpeg')">
+<body style="background-image: url(../../app/public/home-background.jpeg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;">
     <!-- JUMBOTRON -->
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
@@ -45,7 +51,7 @@
         <!-- FOOTER SECTION -->
         <footer class="footer">
             <div class="container">
-                <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/theclegginator/FriendFinder">GitHub Repo</a></p>
+                <p style="color: white;"><a href="/api/friends">API Friends List</a> | <a href="https://github.com/theclegginator/FriendFinder">GitHub Repo</a></p>
             </div>
         </footer>
 
