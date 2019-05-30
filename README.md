@@ -12,35 +12,26 @@ The following Node modules are used (and are included in the package.json file):
 * Upon going to the survey, the user will fill out their name, a URL for their profile picture, and answer 10 compatibility questions.
 * Once they hit submit, the user's response will be POSTED via the API routes (see apiRoutes.js).
 * Once the post is confirmed to have been successful, the compatibility logic will run (see details in the "Compatibility Logic" section below) and the best match from previous entries to the API will be displayed in a modal on-screen.
+* The GIF below shows us a sample of the user experience.
   
 ![Screenshot](basic-operation.gif)
 
 ### API Route Link
 * Clicking this link will take the user to a list of users that have been posted to the API in an array of JSON objects, as seen below.
+* As can be seen in the GIF below, the user that we just posted in the previous example shows up in our array.
 
 ![Screenshot](api-data.gif)
 
+
+### Simple Form Validation
+* The application utilizes simple form validation logic to ensure the user has provided all the necessary information. If something is missing, a modal will appear instructing them further.
+* This also serves the purpose of preventing invalid or incomplete data from being posted through the API routes.
+
+![Screenshot](error-modal.gif)
+
 ### Compatibility Logic
-* 
-
-### Bamazon Manager Function 3: *Add to Inventory*
-* This feature will allow the manager to increase the inventory of an item already in stock.
-* It will then report the new stock and ensure the database is updated.
-
-![Screenshot](README_images/bamazonManager3.gif)
-
-### Bamazon Manager Function 4: *Add New Product*
-* This feature will allow the manager to add a brand new product (database line item) to the inventory
-* It will ask the manager questions about all the details needed to add the item.
-
-![Screenshot](README_images/bamazonManager4.gif)
-
-* As can be seen below, the item, "PBJ", that was just entered, is now shown when querying the database for available products.
-
-![Screenshot](README_images/bamazonManager5.gif)
-
-### Bamazon Manager Function 5: *I'm done here*
-
-* Lastly, when you are done with your managerial tasks, you can exit the application.
-
-![Screenshot](README_images/bamazonManager6.gif)
+* Firstly, note that the user answers the 10 compatibility questions on a scale of 1 to 5, with 1 being strongly disagree and 5 being strongly agree. As such, we effectively have 10 "scores" from each user answering the questions.
+* Upon posting their response, the user's answers will then be compared to every other user of the application to find the first closest match.
+* The closest match is determined by find the total difference between the user's scores and a prospective match's scores. For example, if, on question 3, our user provided a score of 2, while the potential match provided a score of 5, the difference between their scores would be 3 for this question. The same logic is applied to all 10 questions and a total difference is calculated. 
+* Whoever has the lowest total difference from the user will be considered the best match and is posted to the results modal.
+* The detailed logic for this can be seen in the file "apiRoutes.js".
