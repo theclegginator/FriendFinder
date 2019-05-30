@@ -10,20 +10,18 @@ The following Node modules are used (and are included in the package.json file):
 ### Basic Functionality: Complete the Survey and Find a Match
 * Going to the homepage will show us a link to take the survey.
 * Upon going to the survey, the user will fill out their name, a URL for their profile picture, and answer 10 compatibility questions.
+* Once they hit submit, the user's response will be POSTED via the API routes (see apiRoutes.js).
+* Once the post is confirmed to have been successful, the compatibility logic will run (see details in the "Compatibility Logic" section below) and the best match from previous entries to the API will be displayed in a modal on-screen.
   
 ![Screenshot](basic-operation.gif)
 
+### API Route Link
+* Clicking this link will take the user to a list of users that have been posted to the API in an array of JSON objects, as seen below.
+
+![Screenshot](api-data.gif)
+
 ### Compatibility Logic
-* When running bamazonManager.js, a list of a few options will show on the console.
-* This feature will query the database and show the manager what is currently in stock.
-  
-![Screenshot](README_images/bamazonManager1.gif)
-
-### Bamazon Manager Function 2: *View Low Inventory*
-* This feature will query the database and show the manager any items that have a stock of less than 5 units available.
-* If everything is properly stocked, the manager will be notified of that as well.
-
-![Screenshot](README_images/bamazonManager2.gif)
+* 
 
 ### Bamazon Manager Function 3: *Add to Inventory*
 * This feature will allow the manager to increase the inventory of an item already in stock.
